@@ -2,18 +2,49 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-namespace superCoolGame
+namespace superCoolGame.View
 {
 	public class Animation
 	{
-		Texture2D spriteStrip;
-		float scale;
-		int elapsedTime;
-		int frameTime;
-		int frameCount;
-		int currentFrame;
+		private Texture2D spriteStrip;
+		public Texture2D SpriteStrip
+		{
+			get{ return spriteStrip; }
+			set { spriteStrip = value; }
+		}
 
-		Color color;
+		private float scale;
+		public float Scale
+		{
+			get { return scale; }
+			set { scale = value; }
+		}
+
+		private int elapsedTime;
+		public int ElapsedTime
+		{
+			get { return elapsedTime; }
+			set { elapsedTime = value; }
+		}
+
+		private int frameTime;
+		public int FrameTime
+		{
+			get { return frameTime; }
+			set{ frameTime = value; }
+
+		}
+
+		private int frameCount;
+		public int FrameCount
+		{
+			get { return frameCount; }
+			set { frameCount = value; }
+		}
+
+		private int currentFrame;
+
+		private Color color;
 		public Color Color
 		{
 			get{ return color; }
@@ -22,21 +53,32 @@ namespace superCoolGame
 		Rectangle sourceRect = new Rectangle();
 		Rectangle destinationRect = new Rectangle();
 
-		public int frameWidth;
+		private  int frameWidth;
 		public int FrameWidth
 		{
 			get { return FrameWidth; }
 			set { FrameWidth = value; }
 		}
-		public int FrameHeight;
+		private int FrameHeight;
+		public int frameHeight
+		{
+			get { return FrameHeight;}
+			set { FrameHeight = value;}
+		}
 
-		public bool Active;
+		private  bool Active;
 		public bool active
 		{
 			get { return Active; }
 			set { Active = value; }
 		}
-		public bool Looping;
+
+		private  bool Looping;
+		public bool looping
+		{
+			get{ return Looping; }
+			set { Looping = value; }
+		}
 
 		public Vector2 Position;
 		public Vector2 position
@@ -44,6 +86,8 @@ namespace superCoolGame
 			get { return Position; }
 			set { Position = value; }
 		}
+
+
 
 
 		public void Initialize()

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
-
+using superCoolGame.View;
 namespace superCoolGame
 {
 	/// <summary>
@@ -53,13 +53,19 @@ namespace superCoolGame
 			spriteBatch = new SpriteBatch (GraphicsDevice);
 			// Load the player resources 
 			Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X,GraphicsDevice.Viewport.TitleSafeArea.Y +GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
-			player.Initialize(Content.Load<Texture2D>("Texture/player"), playerPosition);
+			Animation playerAnimation = new Animation();
+			Texture2D playerTexture = Content.Load<Texture2D>("shipAnimation");
+			playerAnimation.Initialize(playerTexture, Vector2.Zero, 115, 69, 8, 30, Color.White, 1f, true);
+
+			Vector2 PlayerPosition = new Vector2 (GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y
+				+ GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
+			player.Initialize(playerAnimation, playerPosition);
 
 		}
 
 		private void UpdatePlayer(GameTime gameTime)
 		{
-
+			player.Update(gameTime);
 			// Get Thumbstick Controls
 			player.Position.X += currentGamePadState.ThumbSticks.Left.X *playerMoveSpeed;
 			player.Position.Y -= currentGamePadState.ThumbSticks.Left.Y *playerMoveSpeed;
