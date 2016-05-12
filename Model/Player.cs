@@ -43,7 +43,7 @@ namespace superCoolGame
 			set {score = value;}
 		}
 
-		public void Initalize(Texture2D texture, Vector2 position)
+		public void Initialize(Texture2D texture, Vector2 position)
 		{
 			this.active = true;
 			this.health = 100;
