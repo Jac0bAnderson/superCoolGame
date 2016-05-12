@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using superCoolGame.View;
 namespace superCoolGame
 {
 	public class Player
@@ -10,7 +11,12 @@ namespace superCoolGame
 		private int health;
 		public Texture2D PlayerTexture;
 		public Vector2 Position;
-
+		private Animation playerAnimation;
+		public Animation PlayerAnimation
+		{
+			get{ return playerAnimation; }
+			set { playerAnimation = value; }
+		}
 		public bool Active
 		{
 			get { return active;}
@@ -28,13 +34,13 @@ namespace superCoolGame
 
 		public int Width
 		{
-			get { return PlayerTexture.Width; }
+			get { return playerAnimation.FrameWidth; }
 		}
 
-	
+
 		public int Height
 		{
-			get { return PlayerTexture.Height; }
+			get { return playerAnimation.FrameHeight; }
 		}
 
 		public int Score
@@ -47,10 +53,24 @@ namespace superCoolGame
 		{
 			this.active = true;
 			this.health = 100;
-			this.score = 0;
 
+			this.score = 0;
 			this.PlayerTexture = texture;
 			this.Position = position;
+		}
+		public void Initialize(Animation animation, Vector2 position)
+		{
+			PlayerAnimation = animation;
+
+			// Set the starting position of the player around the middle of the screen and to the back
+			Position = position;
+
+			// Set the player to be active
+			Active = true;
+
+			// Set the player health
+			Health = 100;
+			this.score = 0;
 		}
 
 		public void Update()
