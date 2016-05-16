@@ -69,8 +69,8 @@ namespace superCoolGame.View
 		private  bool Active;
 		public bool active
 		{
-			get { return Active; }
-			set { Active = value; }
+			get { return active; }
+			set { active = value; }
 		}
 
 		private  bool Looping;
@@ -92,13 +92,13 @@ namespace superCoolGame.View
 
 		public void Initialize()
 		{
-			this.color = color;
-			this.FrameWidth = FrameWidth;
-			this.FrameHeight = FrameHeight;
-			this.frameCount = frameCount;
-			this.frameTime = frameTime;
-			this.scale = scale;
-			Looping = Looping;
+			this.color = Color;
+			this.FrameWidth = frameWidth;
+			this.FrameHeight = frameHeight;
+			this.FrameCount = frameCount;
+			this.frameTime = FrameTime;
+			this.scale = Scale;
+			Looping = looping;
 			Position = position;
 			spriteStrip = Texture;
 			elapsedTime = 0;

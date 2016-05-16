@@ -41,6 +41,7 @@ namespace superCoolGame
 		public int Height
 		{
 			get { return PlayerAnimation.FrameHeight; }
+
 		}
 
 		public int Score

@@ -23,6 +23,11 @@ namespace superCoolGame
 		private GamePadState previousGamePadState; 
 
 		private float playerMoveSpeed;
+		private Texture2D mainBackground;
+
+		// Parallaxing Layers
+		private ParallaxingBackground bgLayer1;
+		private ParallaxingBackground bgLayer2;
 
 		public Game1 ()
 		{
@@ -41,6 +46,8 @@ namespace superCoolGame
 			base.Initialize ();
 			player = new Player();
 			playerMoveSpeed = 8.0f;
+			bgLayer1 = new ParallaxingBackground();
+			bgLayer2 = new ParallaxingBackground();
 		}
 
 		/// <summary>
@@ -60,6 +67,11 @@ namespace superCoolGame
 			Vector2 PlayerPosition = new Vector2 (GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y
 				+ GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
 			player.Initialize(playerAnimation, playerPosition);
+			// Load the parallaxing background
+			bgLayer1.Initialize(Content, "Texture/bgLayer1", GraphicsDevice.Viewport.Width, -1);
+			bgLayer2.Initialize(Content, "Texture/bgLayer2", GraphicsDevice.Viewport.Width, -2);
+
+			mainBackground = Content.Load<Texture2D>("mainbackground");
 
 		}
 
@@ -117,7 +129,7 @@ namespace superCoolGame
 			currentKeyboardState = Keyboard.GetState();
 			currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
-
+			UpdatePlayer (gameTime);
 			//Update the player
 			UpdatePlayer(gameTime);
 			base.Update (gameTime);
@@ -134,7 +146,9 @@ namespace superCoolGame
 			//TODO: Add your drawing code here
 			// Start drawing
 			spriteBatch.Begin();
-
+			// Update the parallaxing background
+			bgLayer1.Update();
+			bgLayer2.Update();
 			// Draw the Player
 			player.Draw(spriteBatch);
 
